@@ -1,1 +1,1 @@
-This is a React component for a template library.
+This is a repository for React components.
