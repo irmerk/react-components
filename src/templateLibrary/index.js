@@ -71,6 +71,22 @@ class TemplateLibrary extends React.Component {
     };
   }
 
+  // renderActions() {
+  //   return (
+  //     <TemplateActions>
+  //        <div>
+  //           <AddToContractBtn>
+  //             <Icon name="plus" />
+  //             Add to contract
+  //           </AddToContractBtn>
+  //           <DetailsBtn>
+  //             Details
+  //           </DetailsBtn>
+  //         </div>
+  //     </TemplateActions>
+  //   );
+  // }
+
   /**
    * Called by React when the component has been mounted into the DOM tree
    */
