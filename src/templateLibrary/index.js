@@ -14,60 +14,47 @@
 
 import React from 'react';
 import {
+  Button,
   Card,
-  Icon,
-  Image,
-  List,
+  Input,
 } from 'semantic-ui-react';
 import styled from 'styled-components';
 
-const TemplateCard = styled(Card)`
+// import '../stylesheets/index.styl';
+
+import CustomLoader from '../CustomLoader';
+import TemplateCard from './TemplateCard';
+
+const TemplatesWrapper = styled.div`
   position: relative;
-  text-align: left;
-  box-shadow: 0 1px 9px 0 rgba(0,0,0,0.1);
+  margin: 16px 16px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  max-width: 442px;
 `;
 
-const TemplateLogo = styled(Image)`
-  position: absolute !important;
-  top: 8px;
-  right: 10px;
+const Header = styled.div`
+  position: relative;
+  font-family: 'IBM Plex Sans', sans-serif;
+  max-width: 442px;
 `;
 
-const Version = styled.span`
-  margin-left: 10px;
-  font-size: 12px;
-  font-weight: 300;
+const Functionality = styled.div`
+  margin: 16px 0 16px 0;
+  max-width: 410px;
+  font-family: 'IBM Plex Sans', sans-serif;
 `;
 
-const TemplateActions = styled(Card.Content)`
-  padding: 0 !important;
-  background-color: #F9F9F9 !important;
+const SearchInput = styled(Input)`
+  margin: 0 13px 13px 0;
+  float: left;
 `;
 
-const TemplateBtn = styled.a`
-  padding: 5px 10px;
-  display: inline-block;
-  color: #484848;
-  font-family: "IBM Plex Sans";
-  font-size: 12px;
-  font-weight: bold;
+const AddClauseBtn = styled(Button)`
+  max-width: 254px;
 `;
 
-const AddToContractBtn = styled(TemplateBtn)`
-  width: 60%;
-  border-right: 1px solid #999;
-  cursor: pointer;
-  &:hover {
-    color: #3087CB;
-  }
-`;
-
-const DetailsBtn = styled(TemplateBtn)`
-  float: right;
-  width: 40%;
-  font-size: 12px;
-  font-weight: 300;
-  text-align: center;
+const TemplateCards = styled(Card.Group)`
+  margin: 20px 0 0 0;
 `;
 
 /**
@@ -79,6 +66,8 @@ class TemplateLibrary extends React.Component {
     super(props);
     this.state = {
       templates: ['NAME', ' ', 'HERE'],
+      icon: '',
+      loading: false,
     };
   }
 
@@ -109,33 +98,25 @@ class TemplateLibrary extends React.Component {
   render() {
     return (
       <div>
-        <List>
-          <List.Item>
-            <TemplateCard>
-              <Card.Content>
-                <TemplateLogo />
-                <Card.Header>
-                  {this.state.templates}
-                  <Version>v VERSION HERE</Version>
-                </Card.Header>
-                <Card.Description>
-                  DESCRIPTION HERE
-                </Card.Description>
-              </Card.Content>
-              <TemplateActions>
-                <div>
-                  <AddToContractBtn>
-                    <Icon name="plus" />
-                    Add to contract
-                  </AddToContractBtn>
-                  <DetailsBtn>
-                    Details
-                  </DetailsBtn>
-                </div>
-              </TemplateActions>
-            </TemplateCard>
-          </List.Item>
-        </List>
+        <TemplatesWrapper>
+          <Header>
+            SMART CLAUSES
+          </Header>
+          <Functionality>
+        <SearchInput className="icon" fluid icon="search" placeholder="Search..." onChange={this.onQueryChange} />
+        <AddClauseBtn
+            content="New Smart Clause Template"
+            color="blue"
+
+            fluid
+            icon="plus"
+            id="addClauseBtn"
+          /></Functionality>
+          <CustomLoader active={this.state.loading} />
+          <TemplateCards style={{ width: '100%' }}>
+            <TemplateCard templates={this.state.templates} />
+          </TemplateCards>
+        </TemplatesWrapper>
       </div>
     );
   }
