@@ -13,43 +13,32 @@
  */
 
 import React from 'react';
-import { List } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
 /**
- * A Template Library component that will display the filtered list of templates 
+ * A Template Library component that will display the filtered list of templates
  * and provide drag-and-drop functionality.
  */
 class TemplateLibrary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        templates = []
+      templates: [],
     };
   }
 
   /**
    * Called by React when the component has been mounted into the DOM tree
    */
-  componentDidMount() {
-    // this.onChange();
-
-    // this.updateMenu();
-  }
 
   /**
    * Render this React component
    * @return {*} the react component
    */
   render() {
-    const templates = this.state.templates;
-
     return (
       <div>
-        <List>
-            {templates}
-        </List>
+        <p>Testing HERE</p>
       </div>
     );
   }
@@ -58,8 +47,5 @@ class TemplateLibrary extends React.Component {
 /**
  * The property types for this component
  */
-TemplateLibrary.propTypes = {
-  onChange: PropTypes.func.isRequired,
-};
 
 export default TemplateLibrary;
