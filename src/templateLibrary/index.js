@@ -13,7 +13,62 @@
  */
 
 import React from 'react';
-// import styled from 'styled-components';
+import {
+  Card,
+  Icon,
+  Image,
+  List,
+} from 'semantic-ui-react';
+import styled from 'styled-components';
+
+const TemplateCard = styled(Card)`
+  position: relative;
+  text-align: left;
+  box-shadow: 0 1px 9px 0 rgba(0,0,0,0.1);
+`;
+
+const TemplateLogo = styled(Image)`
+  position: absolute !important;
+  top: 8px;
+  right: 10px;
+`;
+
+const Version = styled.span`
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: 300;
+`;
+
+const TemplateActions = styled(Card.Content)`
+  padding: 0 !important;
+  background-color: #F9F9F9 !important;
+`;
+
+const TemplateBtn = styled.a`
+  padding: 5px 10px;
+  display: inline-block;
+  color: #484848;
+  font-family: "IBM Plex Sans";
+  font-size: 12px;
+  font-weight: bold;
+`;
+
+const AddToContractBtn = styled(TemplateBtn)`
+  width: 60%;
+  border-right: 1px solid #999;
+  cursor: pointer;
+  &:hover {
+    color: #3087CB;
+  }
+`;
+
+const DetailsBtn = styled(TemplateBtn)`
+  float: right;
+  width: 40%;
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+`;
 
 /**
  * A Template Library component that will display the filtered list of templates
@@ -23,9 +78,25 @@ class TemplateLibrary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      templates: [],
+      templates: ['NAME', ' ', 'HERE'],
     };
   }
+
+  // renderActions() {
+  //   return (
+  //     <TemplateActions>
+  //        <div>
+  //           <AddToContractBtn>
+  //             <Icon name="plus" />
+  //             Add to contract
+  //           </AddToContractBtn>
+  //           <DetailsBtn>
+  //             Details
+  //           </DetailsBtn>
+  //         </div>
+  //     </TemplateActions>
+  //   );
+  // }
 
   /**
    * Called by React when the component has been mounted into the DOM tree
@@ -38,7 +109,33 @@ class TemplateLibrary extends React.Component {
   render() {
     return (
       <div>
-        <p>Testing HERE</p>
+        <List>
+          <List.Item>
+            <TemplateCard>
+              <Card.Content>
+                <TemplateLogo />
+                <Card.Header>
+                  {this.state.templates}
+                  <Version>v VERSION HERE</Version>
+                </Card.Header>
+                <Card.Description>
+                  DESCRIPTION HERE
+                </Card.Description>
+              </Card.Content>
+              <TemplateActions>
+                <div>
+                  <AddToContractBtn>
+                    <Icon name="plus" />
+                    Add to contract
+                  </AddToContractBtn>
+                  <DetailsBtn>
+                    Details
+                  </DetailsBtn>
+                </div>
+              </TemplateActions>
+            </TemplateCard>
+          </List.Item>
+        </List>
       </div>
     );
   }
