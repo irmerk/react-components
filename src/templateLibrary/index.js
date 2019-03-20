@@ -13,8 +13,49 @@
  */
 
 import React from 'react';
-import { List } from 'semantic-ui-react';
+import {
+  Button,
+  Card,
+  Input,
+} from 'semantic-ui-react';
+import styled from 'styled-components';
+
+// import '../stylesheets/index.styl';
+
+import CustomLoader from '../CustomLoader';
 import TemplateCard from './TemplateCard';
+
+const TemplatesWrapper = styled.div`
+  position: relative;
+  margin: 16px 16px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  max-width: 442px;
+`;
+
+const Header = styled.div`
+  position: relative;
+  font-family: 'IBM Plex Sans', sans-serif;
+  max-width: 442px;
+`;
+
+const Functionality = styled.div`
+  margin: 16px 0 16px 0;
+  max-width: 410px;
+  font-family: 'IBM Plex Sans', sans-serif;
+`;
+
+const SearchInput = styled(Input)`
+  margin: 0 13px 13px 0;
+  float: left;
+`;
+
+const AddClauseBtn = styled(Button)`
+  max-width: 254px;
+`;
+
+const TemplateCards = styled(Card.Group)`
+  margin: 20px 0 0 0;
+`;
 
 /**
  * A Template Library component that will display the filtered list of templates
@@ -26,6 +67,7 @@ class TemplateLibrary extends React.Component {
     this.state = {
       templates: ['NAME', ' ', 'HERE'],
       icon: '',
+      loading: false,
     };
   }
 
@@ -40,11 +82,25 @@ class TemplateLibrary extends React.Component {
   render() {
     return (
       <div>
-        <List>
-          <List.Item>
+        <TemplatesWrapper>
+          <Header>
+            SMART CLAUSES
+          </Header>
+          <Functionality>
+        <SearchInput className="icon" fluid icon="search" placeholder="Search..." onChange={this.onQueryChange} />
+        <AddClauseBtn
+            content="New Smart Clause Template"
+            color="blue"
+
+            fluid
+            icon="plus"
+            id="addClauseBtn"
+          /></Functionality>
+          <CustomLoader active={this.state.loading} />
+          <TemplateCards style={{ width: '100%' }}>
             <TemplateCard templates={this.state.templates} />
-          </List.Item>
-        </List>
+          </TemplateCards>
+        </TemplatesWrapper>
       </div>
     );
   }

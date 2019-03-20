@@ -43,7 +43,7 @@ const Version = styled.span`
 class TemplateCard extends Component {
   render() {
     return (
-        <CardContainer>
+        <CardContainer fluid>
             <Card.Content>
               <TemplateLogo />
               <Card.Header>
