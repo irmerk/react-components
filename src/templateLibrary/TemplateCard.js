@@ -25,6 +25,7 @@ import TemplateActions from './TemplateActions';
 const CardContainer = styled(Card)`
   position: relative;
   text-align: left;
+  height: 120px;
   box-shadow: 0 1px 9px 0 rgba(0,0,0,0.1);
 `;
 
@@ -32,6 +33,7 @@ const TemplateLogo = styled(Image)`
   position: absolute !important;
   top: 8px;
   right: 10px;
+  max-height: 50px;
 `;
 
 const Version = styled.span`
@@ -45,7 +47,7 @@ class TemplateCard extends Component {
     return (
         <CardContainer fluid>
             <Card.Content>
-              <TemplateLogo />
+              <TemplateLogo src={this.props.icon} />
               <Card.Header>
                 {this.props.templates}
                 <Version>v VERSION HERE</Version>
@@ -65,6 +67,7 @@ class TemplateCard extends Component {
  */
 TemplateCard.propTypes = {
   templates: PropTypes.array,
+  icon: PropTypes.string,
 };
 
 export default TemplateCard;

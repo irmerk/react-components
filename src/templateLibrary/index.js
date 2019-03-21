@@ -66,6 +66,7 @@ const AddClauseBtn = styled(Button)`
 
 const TemplateCards = styled(Card.Group)`
   margin: 20px 0 0 0;
+  width: 100%;
 `;
 
 /**
@@ -77,7 +78,7 @@ class TemplateLibrary extends React.Component {
     super(props);
     this.state = {
       templates: ['NAME', ' ', 'HERE'],
-      icon: '',
+      icon: 'https://www.accordproject.org/static/images/footer/logo@2x.png',
       loading: false,
     };
   }
@@ -114,8 +115,8 @@ class TemplateLibrary extends React.Component {
             />
           </Functionality>
           <CustomLoader active={this.state.loading} />
-          <TemplateCards style={{ width: '100%' }}>
-            <TemplateCard templates={this.state.templates} />
+          <TemplateCards>
+            <TemplateCard templates={this.state.templates} icon={this.state.icon} />
           </TemplateCards>
         </TemplatesWrapper>
       </div>

@@ -23,6 +23,7 @@ import styled from 'styled-components';
 const ActionsContainer = styled(Card.Content)`
   padding: 0 !important;
   background-color: #F9F9F9 !important;
+  height: 20px;
 `;
 
 const TemplateBtn = styled.a`
