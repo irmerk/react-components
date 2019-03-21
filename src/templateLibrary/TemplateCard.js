@@ -31,15 +31,20 @@ const CardContainer = styled(Card)`
 
 const TemplateLogo = styled(Image)`
   position: absolute !important;
-  top: 8px;
-  right: 10px;
-  max-height: 50px;
+  top: 13px;
+  right: 16px;
+  max-height: 23px;
 `;
 
 const Version = styled.span`
   margin-left: 10px;
   font-size: 12px;
   font-weight: 300;
+`;
+
+const DescriptionContainer = styled(Card.Description)`
+  max-width: 400px;
+  margin: 0 0 -15px 0;
 `;
 
 class TemplateCard extends Component {
@@ -49,12 +54,12 @@ class TemplateCard extends Component {
             <Card.Content>
               <TemplateLogo src={this.props.icon} />
               <Card.Header>
-                {this.props.templates}
-                <Version>v VERSION HERE</Version>
+                {this.props.title}
+                <Version>v 0.1.0</Version>
               </Card.Header>
-              <Card.Description>
-                DESCRIPTION HERE
-              </Card.Description>
+              <DescriptionContainer>
+              This is a one time payment clause applicable at the execution of the contract.
+              </DescriptionContainer>
             </Card.Content>
             <TemplateActions />
         </CardContainer>
@@ -66,7 +71,7 @@ class TemplateCard extends Component {
  * The property types for this component
  */
 TemplateCard.propTypes = {
-  templates: PropTypes.array,
+  title: PropTypes.string,
   icon: PropTypes.string,
 };
 

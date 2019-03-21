@@ -77,7 +77,7 @@ class TemplateLibrary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      templates: ['NAME', ' ', 'HERE'],
+      title: 'One Time Payment',
       icon: 'https://www.accordproject.org/static/images/footer/logo@2x.png',
       loading: false,
     };
@@ -116,7 +116,8 @@ class TemplateLibrary extends React.Component {
           </Functionality>
           <CustomLoader active={this.state.loading} />
           <TemplateCards>
-            <TemplateCard templates={this.state.templates} icon={this.state.icon} />
+            <TemplateCard title={this.state.title} icon={this.state.icon} />
+            <TemplateCard title={this.state.title} icon={this.state.icon} />
           </TemplateCards>
         </TemplatesWrapper>
       </div>
