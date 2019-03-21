@@ -20,8 +20,6 @@ import {
 } from 'semantic-ui-react';
 import styled from 'styled-components';
 
-// import '../stylesheets/index.styl';
-
 import CustomLoader from '../CustomLoader';
 import TemplateCard from './TemplateCard';
 
@@ -35,22 +33,35 @@ const TemplatesWrapper = styled.div`
 const Header = styled.div`
   position: relative;
   font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
   max-width: 442px;
 `;
 
+const UploadImport = styled.a`
+  position: relative;
+  font-weight: 300;
+  float: right;
+  margin: 0 16px 0 0;
+  text-decoration: underline;
+  font-size: 14px;
+  color: #76777D;
+`;
+
 const Functionality = styled.div`
-  margin: 16px 0 16px 0;
-  max-width: 410px;
+  margin: 16px 0;
+  max-width: 430px;
   font-family: 'IBM Plex Sans', sans-serif;
 `;
 
 const SearchInput = styled(Input)`
-  margin: 0 13px 13px 0;
+  margin: 0 20px 0 0;
+  width: 136px;
   float: left;
 `;
 
 const AddClauseBtn = styled(Button)`
-  max-width: 254px;
+  max-width: 272px;
 `;
 
 const TemplateCards = styled(Card.Group)`
@@ -71,22 +82,6 @@ class TemplateLibrary extends React.Component {
     };
   }
 
-  // renderActions() {
-  //   return (
-  //     <TemplateActions>
-  //        <div>
-  //           <AddToContractBtn>
-  //             <Icon name="plus" />
-  //             Add to contract
-  //           </AddToContractBtn>
-  //           <DetailsBtn>
-  //             Details
-  //           </DetailsBtn>
-  //         </div>
-  //     </TemplateActions>
-  //   );
-  // }
-
   /**
    * Called by React when the component has been mounted into the DOM tree
    */
@@ -100,18 +95,24 @@ class TemplateLibrary extends React.Component {
       <div>
         <TemplatesWrapper>
           <Header>
-            SMART CLAUSES
+            Smart Clauses
+            <UploadImport>
+              Import from VS Code
+            </UploadImport>
+            <UploadImport>
+              Upload CTA file
+            </UploadImport>
           </Header>
           <Functionality>
-        <SearchInput className="icon" fluid icon="search" placeholder="Search..." onChange={this.onQueryChange} />
-        <AddClauseBtn
-            content="New Smart Clause Template"
-            color="blue"
-
-            fluid
-            icon="plus"
-            id="addClauseBtn"
-          /></Functionality>
+            <SearchInput className="icon" fluid icon="search" placeholder="Search..." onChange={this.onQueryChange} />
+            <AddClauseBtn
+              content="New Smart Clause Template"
+              color="blue"
+              fluid
+              icon="plus"
+              id="addClauseBtn"
+            />
+          </Functionality>
           <CustomLoader active={this.state.loading} />
           <TemplateCards style={{ width: '100%' }}>
             <TemplateCard templates={this.state.templates} />
