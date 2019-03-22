@@ -13,6 +13,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Button,
   Card,
@@ -21,6 +22,7 @@ import {
 import styled from 'styled-components';
 
 import CustomLoader from '../CustomLoader';
+import UploadImport from './UploadImport';
 import TemplateCard from './TemplateCard';
 
 const TemplatesWrapper = styled.div`
@@ -31,22 +33,22 @@ const TemplatesWrapper = styled.div`
 `;
 
 const Header = styled.div`
-  position: relative;
+  display: flex;
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 800;
   font-size: 16px;
   max-width: 442px;
 `;
 
-const UploadImport = styled.a`
-  position: relative;
-  font-weight: 300;
-  float: right;
-  margin: 0 16px 0 0;
-  text-decoration: underline;
-  font-size: 14px;
-  color: #76777D;
-`;
+// const UploadImport = styled.a`
+//   position: relative;
+//   font-weight: 300;
+//   float: right;
+//   margin: 0 16px 0 0;
+//   text-decoration: underline;
+//   font-size: 14px;
+//   color: #76777D;
+// `;
 
 const Functionality = styled.div`
   margin: 16px 0;
@@ -80,6 +82,11 @@ class TemplateLibrary extends React.Component {
       title: 'One Time Payment',
       icon: 'https://www.accordproject.org/static/images/footer/logo@2x.png',
       loading: false,
+      templates: this.props.templates,
+      upload: this.props.upload,
+      import: this.props.import,
+      search: this.props.search,
+      addTemp: this.props.addTemp,
     };
   }
 
@@ -97,12 +104,7 @@ class TemplateLibrary extends React.Component {
         <TemplatesWrapper>
           <Header>
             Smart Clauses
-            <UploadImport>
-              Import from VS Code
-            </UploadImport>
-            <UploadImport>
-              Upload CTA file
-            </UploadImport>
+            <UploadImport import={this.props.import} upload={this.props.upload} />
           </Header>
           <Functionality>
             <SearchInput className="icon" fluid icon="search" placeholder="Search..." onChange={this.onQueryChange} />
@@ -128,5 +130,12 @@ class TemplateLibrary extends React.Component {
 /**
  * The property types for this component
  */
+TemplateLibrary.propTypes = {
+  upload: PropTypes.func,
+  import: PropTypes.func,
+  search: PropTypes.func,
+  addTemp: PropTypes.func,
+  templates: PropTypes.array,
+};
 
 export default TemplateLibrary;
