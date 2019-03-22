@@ -22,7 +22,6 @@ import {
 import styled from 'styled-components';
 
 import CustomLoader from '../CustomLoader';
-import UploadImport from './UploadImport';
 import TemplateCard from './TemplateCard';
 
 const TemplatesWrapper = styled.div`
@@ -33,22 +32,22 @@ const TemplatesWrapper = styled.div`
 `;
 
 const Header = styled.div`
-  display: flex;
+  position: relative;
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 800;
   font-size: 16px;
   max-width: 442px;
 `;
 
-// const UploadImport = styled.a`
-//   position: relative;
-//   font-weight: 300;
-//   float: right;
-//   margin: 0 16px 0 0;
-//   text-decoration: underline;
-//   font-size: 14px;
-//   color: #76777D;
-// `;
+const UploadImport = styled.a`
+  position: relative;
+  font-weight: 300;
+  float: right;
+  margin: 0 16px 0 0;
+  text-decoration: underline;
+  font-size: 14px;
+  color: #76777D;
+`;
 
 const Functionality = styled.div`
   margin: 16px 0;
@@ -104,7 +103,20 @@ class TemplateLibrary extends React.Component {
         <TemplatesWrapper>
           <Header>
             Smart Clauses
-            <UploadImport import={this.props.import} upload={this.props.upload} />
+            {this.props.import
+            && <UploadImport
+              onClick={this.props.upload}
+              href="javascript:void(0);"
+              >
+              Import from VS Code
+            </UploadImport>}
+            {this.props.upload
+            && <UploadImport
+              onClick={this.props.upload}
+              href="javascript:void(0);"
+              >
+              Upload CTA file
+            </UploadImport>}
           </Header>
           <Functionality>
             <SearchInput className="icon" fluid icon="search" placeholder="Search..." onChange={this.onQueryChange} />
@@ -135,7 +147,7 @@ TemplateLibrary.propTypes = {
   import: PropTypes.func,
   search: PropTypes.func,
   addTemp: PropTypes.func,
-  templates: PropTypes.array,
+  templates: PropTypes.arrayOf(PropTypes.object),
 };
-
+// .isRequired
 export default TemplateLibrary;
