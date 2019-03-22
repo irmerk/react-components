@@ -17,7 +17,7 @@ CustomLoader.propTypes = {
 
 CustomLoader.defaultProps = {
   active: false,
-  image: '/assets/images/logos/loading.gif',
+  image: 'https://www.accordproject.org/static/images/footer/logo@2x.png',
   loadingMessage: '',
 };
 
