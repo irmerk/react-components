@@ -12,13 +12,10 @@
  * limitations under the License.
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Card,
-  Icon,
-} from 'semantic-ui-react';
 import styled from 'styled-components';
+import { Card, Icon } from 'semantic-ui-react';
 
 const ActionsContainer = styled(Card.Content)`
   padding: 0 !important;
@@ -52,7 +49,15 @@ const DetailsBtn = styled(TemplateBtn)`
   text-align: center;
 `;
 
-class TemplateActions extends Component {
+/**
+ * A Template Actions component that will provide each template
+ * with functionality.
+ */
+class TemplateActions extends React.Component {
+  /**
+     * Render this React component
+     * @return {*} the react component
+  */
   render() {
     return (
         <ActionsContainer>

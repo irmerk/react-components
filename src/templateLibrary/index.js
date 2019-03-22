@@ -20,7 +20,7 @@ import { Button, Card, Input } from 'semantic-ui-react';
 
 import CustomLoader from '../CustomLoader';
 import TemplateCard from './TemplateCard';
-import TemplateDetails from './TemplateDetails';
+// import TemplateDetails from './TemplateDetails';
 
 const TemplatesWrapper = styled.div`
   position: relative;
@@ -76,7 +76,6 @@ class TemplateLibrary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      templates: this.props.templates,
       query: '',
       loading: false,
       templateUri: false,
@@ -95,7 +94,6 @@ class TemplateLibrary extends React.Component {
   }
 
   handleViewTemplate(templateUri) {
-    console.log('HANDLE VIEW TEMPLATE', templateUri);
     this.setState({ templateUri });
   }
 
@@ -104,7 +102,7 @@ class TemplateLibrary extends React.Component {
   }
 
   fetchTemplates() {
-    if (this.state.templates.length > 0) return;
+    if (this.props.templates.length > 0) return;
 
     this.setState({ loading: true });
     // templateMethods.fetchTemplates()
@@ -125,7 +123,7 @@ class TemplateLibrary extends React.Component {
    * @return {*} the react component
    */
   render() {
-    let { templates } = this.state;
+    let { templates } = this.props;
     if (this.state.query.length) {
       const query = new RegExp(this.state.query, 'i');
       templates = templates.filter(t => t.name.match(query));
@@ -175,7 +173,6 @@ class TemplateLibrary extends React.Component {
           }
           </TemplateCards>
           {/* <TemplateDetails
-          actions={this.props.actions}
           btnText="Add to Contract"
           onClick={() => this.props.handleAddClause(this.state.templateUri)}
           onClose={this.handleHideTemplate}
@@ -195,9 +192,9 @@ class TemplateLibrary extends React.Component {
 TemplateLibrary.propTypes = {
   upload: PropTypes.func,
   import: PropTypes.func,
-  addTemp: PropTypes.func,
+  addTemp: PropTypes.func.isRequired,
   addToCont: PropTypes.func,
-  templates: PropTypes.arrayOf(PropTypes.object),
+  templates: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
-// .isRequired
+
 export default TemplateLibrary;

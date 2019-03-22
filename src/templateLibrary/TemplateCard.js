@@ -12,13 +12,10 @@
  * limitations under the License.
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Card,
-  Image,
-} from 'semantic-ui-react';
 import styled from 'styled-components';
+import { Card, Image } from 'semantic-ui-react';
 
 import TemplateActions from './TemplateActions';
 
@@ -47,7 +44,15 @@ const DescriptionContainer = styled(Card.Description)`
   margin: auto;
 `;
 
-class TemplateCard extends Component {
+/**
+ * A Template Card component that will display the each template
+ * and it's details.
+ */
+class TemplateCard extends React.Component {
+  /**
+     * Render this React component
+     * @return {*} the react component
+  */
   render() {
     const { template } = this.props;
     return (

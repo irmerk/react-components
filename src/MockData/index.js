@@ -68,8 +68,8 @@ const mockAddToCont = (input) => { console.log('addToCont: ', input); };
 
 
 class MockData extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       upload: mockUpload,
       import: mockImport,

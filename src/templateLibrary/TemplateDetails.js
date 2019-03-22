@@ -6,6 +6,7 @@ import { Button, Message, Modal } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 import CustomLoader from '../CustomLoader';
+import loadTemplate from './ActionMethods';
 
 const TemplateLanguage = styled.div`
   margin: 0 0 20px;
@@ -31,12 +32,12 @@ export default class TemplateDetails extends React.Component {
   }
 
   componentDidMount() {
-    this.props.actions.loadTemplate(this.props.templateUri);
+    loadTemplate(this.props.templateUri);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.templateUri !== this.props.templateUri) {
-      this.props.actions.loadTemplate(this.props.templateUri);
+      loadTemplate(this.props.templateUri);
     }
   }
 
@@ -245,9 +246,6 @@ export default class TemplateDetails extends React.Component {
 }
 
 TemplateDetails.propTypes = {
-  actions: PropTypes.shape({
-    loadTemplate: PropTypes.func.isRequired,
-  }).isRequired,
   btnText: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
