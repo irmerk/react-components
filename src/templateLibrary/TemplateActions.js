@@ -23,7 +23,7 @@ import styled from 'styled-components';
 const ActionsContainer = styled(Card.Content)`
   padding: 0 !important;
   background-color: #F9F9F9 !important;
-  height: 20px;
+  max-height: 30px;
 `;
 
 const TemplateBtn = styled.a`
@@ -37,7 +37,7 @@ const TemplateBtn = styled.a`
 
 const AddToContractBtn = styled(TemplateBtn)`
   width: 60%;
-  border-right: 1px solid #999;
+  border-right: 1px solid #E1E5EB;
   cursor: pointer;
   &:hover {
     color: #3087CB;
@@ -57,7 +57,8 @@ class TemplateActions extends Component {
     return (
         <ActionsContainer>
         <div>
-          <AddToContractBtn>
+          <AddToContractBtn
+            onClick={() => this.props.addToCont(this.props.nameKey)} >
             <Icon name="plus" />
             Add to contract
           </AddToContractBtn>
@@ -74,7 +75,8 @@ class TemplateActions extends Component {
  * The property types for this component
  */
 TemplateActions.propTypes = {
-  templates: PropTypes.array,
+  addToCont: PropTypes.func,
+  nameKey: PropTypes.string,
 };
 
 export default TemplateActions;

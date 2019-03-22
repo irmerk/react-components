@@ -52,7 +52,7 @@ const templateFive = {
   name: 'IP Payment',
   uri: 'ap://ip-payment@0.8.1#17673fccee1f8e6a79d399e16aaf8228e70f3cb4c2ec6ab334133162114be4bb',
   version: '0.8.1',
-  description: 'This clause is a payment clause for IP agreement, such as trademark or copyright licenses aggreements.',
+  description: 'This clause is a payment clause for IP agreement, such as trademark or copyright licenses aggreements. uch as trademark or copyright licenses aggreements.',
   icon: 'https://www.accordproject.org/static/images/footer/logo@2x.png',
 };
 
@@ -64,6 +64,8 @@ const mockImport = () => { console.log('import'); };
 
 const mockAddTemp = () => { console.log('addTemp'); };
 
+const mockAddToCont = (input) => { console.log('addToCont: ', input); };
+
 
 class MockData extends React.Component {
   constructor(props) {
@@ -73,6 +75,7 @@ class MockData extends React.Component {
       import: mockImport,
       addTemp: mockAddTemp,
       templates: templateArray,
+      addToCont: mockAddToCont,
     };
   }
 
@@ -87,6 +90,7 @@ class MockData extends React.Component {
             upload={this.state.upload}
             import={this.state.import}
             addTemp={this.state.addTemp}
+            addToCont={this.state.addToCont}
         />
     );
   }

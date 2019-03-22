@@ -146,6 +146,7 @@ class TemplateLibrary extends React.Component {
               fluid
               icon="plus"
               id="addClauseBtn"
+              onClick={this.props.addTemp}
             />
           </Functionality>
           <TemplateCards>
@@ -153,7 +154,7 @@ class TemplateLibrary extends React.Component {
             templates.map(t => (
               <TemplateCard
                 key={t.uri}
-                addTemp={this.props.addTemp}
+                addToCont={this.props.addToCont}
                 template={t}
               />
             ))
@@ -172,6 +173,7 @@ TemplateLibrary.propTypes = {
   upload: PropTypes.func,
   import: PropTypes.func,
   addTemp: PropTypes.func,
+  addToCont: PropTypes.func,
   templates: PropTypes.arrayOf(PropTypes.object),
 };
 // .isRequired

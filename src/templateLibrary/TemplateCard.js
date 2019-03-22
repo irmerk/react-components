@@ -25,7 +25,7 @@ import TemplateActions from './TemplateActions';
 const CardContainer = styled(Card)`
   position: relative;
   text-align: left;
-  height: 120px;
+  min-height: 120px;
   box-shadow: 0 1px 9px 0 rgba(0,0,0,0.1);
 `;
 
@@ -44,7 +44,7 @@ const Version = styled.span`
 
 const DescriptionContainer = styled(Card.Description)`
   max-width: 400px;
-  margin: 0 0 -15px 0;
+  margin: auto;
 `;
 
 class TemplateCard extends Component {
@@ -62,7 +62,7 @@ class TemplateCard extends Component {
                 {template.description}
               </DescriptionContainer>
             </Card.Content>
-            <TemplateActions />
+            <TemplateActions addToCont={this.props.addToCont} nameKey={template.uri} />
         </CardContainer>
     );
   }
@@ -73,6 +73,7 @@ class TemplateCard extends Component {
  */
 TemplateCard.propTypes = {
   template: PropTypes.object,
+  addToCont: PropTypes.func,
 };
 
 export default TemplateCard;
