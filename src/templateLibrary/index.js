@@ -20,6 +20,7 @@ import { Button, Card, Input } from 'semantic-ui-react';
 
 import CustomLoader from '../CustomLoader';
 import TemplateCard from './TemplateCard';
+import TemplateDetails from './TemplateDetails';
 
 const TemplatesWrapper = styled.div`
   position: relative;
@@ -78,8 +79,11 @@ class TemplateLibrary extends React.Component {
       templates: this.props.templates,
       query: '',
       loading: false,
+      templateUri: false,
     };
     this.onQueryChange = this.onQueryChange.bind(this);
+    this.handleHideTemplate = this.handleHideTemplate.bind(this);
+    this.handleViewTemplate = this.handleViewTemplate.bind(this);
   }
 
   componentDidMount() {
@@ -88,6 +92,15 @@ class TemplateLibrary extends React.Component {
 
   onQueryChange(e, el) {
     this.setState({ query: el.value });
+  }
+
+  handleViewTemplate(templateUri) {
+    console.log('HANDLE VIEW TEMPLATE', templateUri);
+    this.setState({ templateUri });
+  }
+
+  handleHideTemplate() {
+    this.setState({ templateUri: false });
   }
 
   fetchTemplates() {
@@ -151,15 +164,25 @@ class TemplateLibrary extends React.Component {
           </Functionality>
           <TemplateCards>
             {
-            templates.map(t => (
+            _.sortBy(templates, ['name']).map(t => (
               <TemplateCard
                 key={t.uri}
                 addToCont={this.props.addToCont}
                 template={t}
+                handleViewTemplate={this.handleViewTemplate}
               />
             ))
           }
           </TemplateCards>
+          {/* <TemplateDetails
+          actions={this.props.actions}
+          btnText="Add to Contract"
+          onClick={() => this.props.handleAddClause(this.state.templateUri)}
+          onClose={this.handleHideTemplate}
+          open={!!this.state.templateUri}
+          templates={this.props.templates}
+          templateUri={this.state.templateUri}
+        /> */}
         </TemplatesWrapper>
       </div>
     );

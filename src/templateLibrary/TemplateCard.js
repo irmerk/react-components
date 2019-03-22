@@ -62,7 +62,11 @@ class TemplateCard extends Component {
                 {template.description}
               </DescriptionContainer>
             </Card.Content>
-            <TemplateActions addToCont={this.props.addToCont} nameKey={template.uri} />
+            <TemplateActions
+              addToCont={this.props.addToCont}
+              uriKey={template.uri}
+              handleViewDetails={this.props.handleViewTemplate}
+            />
         </CardContainer>
     );
   }
@@ -74,6 +78,7 @@ class TemplateCard extends Component {
 TemplateCard.propTypes = {
   template: PropTypes.object,
   addToCont: PropTypes.func,
+  handleViewTemplate: PropTypes.func,
 };
 
 export default TemplateCard;

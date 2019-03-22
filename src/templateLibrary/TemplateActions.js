@@ -57,12 +57,11 @@ class TemplateActions extends Component {
     return (
         <ActionsContainer>
         <div>
-          <AddToContractBtn
-            onClick={() => this.props.addToCont(this.props.nameKey)} >
+          <AddToContractBtn onClick={() => this.props.addToCont(this.props.uriKey)} >
             <Icon name="plus" />
             Add to contract
           </AddToContractBtn>
-          <DetailsBtn>
+          <DetailsBtn onClick={() => this.props.handleViewDetails(this.props.uriKey)}>
             Details
           </DetailsBtn>
         </div>
@@ -76,7 +75,8 @@ class TemplateActions extends Component {
  */
 TemplateActions.propTypes = {
   addToCont: PropTypes.func,
-  nameKey: PropTypes.string,
+  handleViewDetails: PropTypes.func,
+  uriKey: PropTypes.string,
 };
 
 export default TemplateActions;
