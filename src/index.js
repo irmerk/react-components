@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TemplateLibrary from './TemplateLibrary';
+import MockData from './MockData';
 import 'semantic-ui-css/semantic.min.css';
 
-ReactDOM.render(<TemplateLibrary />, document.getElementById('root'));
+ReactDOM.render(<MockData />, document.getElementById('root'));

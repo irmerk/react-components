@@ -12,14 +12,11 @@
  * limitations under the License.
  */
 
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  Card,
-  Input,
-} from 'semantic-ui-react';
 import styled from 'styled-components';
+import { Button, Card, Input } from 'semantic-ui-react';
 
 import CustomLoader from '../CustomLoader';
 import TemplateCard from './TemplateCard';
@@ -78,15 +75,32 @@ class TemplateLibrary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'One Time Payment',
-      icon: 'https://www.accordproject.org/static/images/footer/logo@2x.png',
-      loading: false,
       templates: this.props.templates,
-      upload: this.props.upload,
-      import: this.props.import,
-      search: this.props.search,
-      addTemp: this.props.addTemp,
+      query: '',
+      loading: false,
     };
+    this.onQueryChange = this.onQueryChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchTemplates();
+  }
+
+  onQueryChange(e, el) {
+    this.setState({ query: el.value });
+  }
+
+  fetchTemplates() {
+    if (this.state.templates.length > 0) return;
+
+    this.setState({ loading: true });
+    // templateMethods.fetchTemplates()
+    //   .then((templates) => {
+    //     this.setState({ loading: false, templates });
+    //   })
+    //   .catch((error) => {
+    //     this.setState({ error, loading: false });
+    //   });
   }
 
   /**
@@ -98,14 +112,20 @@ class TemplateLibrary extends React.Component {
    * @return {*} the react component
    */
   render() {
+    let { templates } = this.state;
+    if (this.state.query.length) {
+      const query = new RegExp(this.state.query, 'i');
+      templates = templates.filter(t => t.name.match(query));
+    }
     return (
       <div>
         <TemplatesWrapper>
+          <CustomLoader active={this.state.loading} />
           <Header>
             Smart Clauses
             {this.props.import
             && <UploadImport
-              onClick={this.props.upload}
+              onClick={this.props.import}
               href="javascript:void(0);"
               >
               Import from VS Code
@@ -128,10 +148,16 @@ class TemplateLibrary extends React.Component {
               id="addClauseBtn"
             />
           </Functionality>
-          <CustomLoader active={this.state.loading} />
           <TemplateCards>
-            <TemplateCard title={this.state.title} icon={this.state.icon} />
-            <TemplateCard title={this.state.title} icon={this.state.icon} />
+            {
+            templates.map(t => (
+              <TemplateCard
+                key={t.uri}
+                addTemp={this.props.addTemp}
+                template={t}
+              />
+            ))
+          }
           </TemplateCards>
         </TemplatesWrapper>
       </div>
@@ -145,7 +171,6 @@ class TemplateLibrary extends React.Component {
 TemplateLibrary.propTypes = {
   upload: PropTypes.func,
   import: PropTypes.func,
-  search: PropTypes.func,
   addTemp: PropTypes.func,
   templates: PropTypes.arrayOf(PropTypes.object),
 };

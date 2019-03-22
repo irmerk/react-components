@@ -49,16 +49,17 @@ const DescriptionContainer = styled(Card.Description)`
 
 class TemplateCard extends Component {
   render() {
+    const { template } = this.props;
     return (
-        <CardContainer fluid>
+        <CardContainer fluid key={template.uri}>
             <Card.Content>
-              <TemplateLogo src={this.props.icon} />
+              <TemplateLogo src={template.icon} />
               <Card.Header>
-                {this.props.title}
-                <Version>v 0.1.0</Version>
+                {template.name}
+                <Version>v {template.version}</Version>
               </Card.Header>
               <DescriptionContainer>
-              This is a one time payment clause applicable at the execution of the contract.
+                {template.description}
               </DescriptionContainer>
             </Card.Content>
             <TemplateActions />
@@ -71,8 +72,7 @@ class TemplateCard extends Component {
  * The property types for this component
  */
 TemplateCard.propTypes = {
-  title: PropTypes.string,
-  icon: PropTypes.string,
+  template: PropTypes.object,
 };
 
 export default TemplateCard;
