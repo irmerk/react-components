@@ -72,7 +72,7 @@ const TemplateCards = styled(Card.Group)`
  * A Template Library component that will display the filtered list of templates
  * and provide drag-and-drop functionality.
  */
-class TemplateLibrary extends React.Component {
+class TemplateLibrary extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
